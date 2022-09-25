@@ -41,8 +41,9 @@ namespace NavratanTechTask.Controllers
         }
 
         [HttpGet("GetOrdersofLoggedInUser"), Authorize]
-        public async Task<ActionResult<List<OrdersResponse>>> GetOrdersofLoggedInUser(int pageSize, int Skip)
+        public async Task<ActionResult<List<OrdersResponse>>> GetOrdersofLoggedInUser(int pageSize, int index)
         {
+            int Skip = index * pageSize;
             OrdersResponse ordersResponse = new OrdersResponse();
             Guid UserId = Guid.Parse(HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
             try
